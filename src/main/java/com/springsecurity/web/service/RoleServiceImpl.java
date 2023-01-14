@@ -1,10 +1,11 @@
-package springboot.hibernatemvcboot.web.service;
+package com.springsecurity.web.service;
 
+import com.springsecurity.web.dao.RoleDao;
+import com.springsecurity.web.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import springboot.hibernatemvcboot.web.dao.RoleDao;
-import springboot.hibernatemvcboot.web.model.Role;
+
 
 import java.util.List;
 

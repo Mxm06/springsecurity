@@ -1,4 +1,4 @@
-package springboot.hibernatemvcboot.web.model;
+package com.springsecurity.web.model;
 
 
 import jakarta.persistence.*;
@@ -6,28 +6,29 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
     @Column(name = "username")
     private String username;
     @Column(name = "password")
     private String password;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Role> roles;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Set<Role> roles = new HashSet<>();
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public User(String username, String password, List<Role> roles) {
+    public User(String username, String password, Set<Role> roles) {
         this(username, password);
         this.roles = roles;
     }
@@ -43,11 +44,11 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public void setName(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 

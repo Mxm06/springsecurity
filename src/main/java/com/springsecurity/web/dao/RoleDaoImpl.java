@@ -1,9 +1,11 @@
-package springboot.hibernatemvcboot.web.dao;
+package com.springsecurity.web.dao;
 
+import com.springsecurity.web.dao.RoleDao;
+import com.springsecurity.web.model.Role;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
-import springboot.hibernatemvcboot.web.model.Role;
+
 
 import java.util.List;
 @Repository

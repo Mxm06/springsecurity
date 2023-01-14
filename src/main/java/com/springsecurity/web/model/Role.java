@@ -1,4 +1,4 @@
-package springboot.hibernatemvcboot.web.model;
+package com.springsecurity.web.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,14 +13,19 @@ public class Role implements GrantedAuthority {
     @Id
     @Column(name = "id")
     private Long id;
-    @Column(name ="roleName")
-    private String roleName;
+    @Column(name ="name")
+    private String name;
     public Role() {
 
     }
-    public Role(Long id, String roleName) {
+    public Role(Long id, String name) {
         this.id = id;
-        this.roleName = roleName;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name + " ";
     }
 
     public Long getId() {
@@ -32,11 +37,11 @@ public class Role implements GrantedAuthority {
     }
 
     public String getRoleName() {
-        return roleName;
+        return name;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setRoleName(String name) {
+        this.name = name;
     }
 
     @Override

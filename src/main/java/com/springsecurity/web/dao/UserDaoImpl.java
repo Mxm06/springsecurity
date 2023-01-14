@@ -1,10 +1,13 @@
-package springboot.hibernatemvcboot.web.dao;
+package com.springsecurity.web.dao;
 
+import com.springsecurity.web.model.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
-import springboot.hibernatemvcboot.web.model.User;
+
 
 
 import java.util.List;
@@ -20,14 +23,11 @@ public class UserDaoImpl implements UserDao{
     }
 
     public void delete(User user) {
-        entityManager.createQuery("delete from User where id =:id").setParameter("id",user.getId()).executeUpdate();
+        entityManager.createQuery("delete from User where id =: id").setParameter("id",user.getId()).executeUpdate();
     }
-    public User getByUsername(String username) throws UsernameNotFoundException {
-        User user = (User) entityManager.createQuery("from User where username = username").getSingleResult();
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
-        return user;
+    public User getByUsername(String username) {
+        return (User) entityManager.createQuery("from User u join fetch u.roles where u.username =:username")
+                .setParameter("username",username).getSingleResult();
     }
 
     public void update(User user) {

@@ -1,11 +1,8 @@
-package springboot.hibernatemvcboot.web.dao;
+package com.springsecurity.web.dao;
 
 
 
-
-
-
-import springboot.hibernatemvcboot.web.model.User;
+import com.springsecurity.web.model.User;
 
 import java.util.List;
 

@@ -1,11 +1,15 @@
-package springboot.hibernatemvcboot.web.service;
+package com.springsecurity.web.service;
 
 
 
 
 
 
-import springboot.hibernatemvcboot.web.model.User;
+
+
+
+
+import com.springsecurity.web.model.User;
 
 import java.util.List;
 

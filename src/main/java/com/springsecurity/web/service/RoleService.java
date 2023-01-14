@@ -1,6 +1,6 @@
-package springboot.hibernatemvcboot.web.service;
+package com.springsecurity.web.service;
 
-import springboot.hibernatemvcboot.web.model.Role;
+import com.springsecurity.web.model.Role;
 
 import java.util.List;
 

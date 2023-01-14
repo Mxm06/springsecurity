@@ -1,6 +1,8 @@
-package springboot.hibernatemvcboot.web.dao;
+package com.springsecurity.web.dao;
 
-import springboot.hibernatemvcboot.web.model.Role;
+
+
+import com.springsecurity.web.model.Role;
 
 import java.util.List;
 

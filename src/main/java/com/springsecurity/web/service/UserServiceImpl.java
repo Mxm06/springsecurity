@@ -1,27 +1,33 @@
-package springboot.hibernatemvcboot.web.service;
+package com.springsecurity.web.service;
 
+import com.springsecurity.web.dao.UserDao;
+import com.springsecurity.web.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import springboot.hibernatemvcboot.web.dao.UserDao;
-import springboot.hibernatemvcboot.web.model.User;
+
+
 
 
 import java.util.List;
     @Service
     public class UserServiceImpl implements UserService, UserDetailsService {
         private UserDao userDao;
+        PasswordEncoder encoder;
         @Autowired
-        public UserServiceImpl(UserDao userDao) {
+        public UserServiceImpl(UserDao userDao,PasswordEncoder encoder) {
             this.userDao = userDao;
+            this.encoder = encoder;
         }
 
         @Override
         @Transactional
         public void save(User user) {
+            user.setPassword(encoder.encode(user.getPassword()));
             userDao.save(user);
         }
         @Override
@@ -33,6 +39,7 @@ import java.util.List;
         @Override
         @Transactional
         public void update(User user) {
+            user.setPassword(encoder.encode(user.getPassword()));
             userDao.update(user);
         }
         @Override
@@ -44,7 +51,11 @@ import java.util.List;
         @Override
         @Transactional
         public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-            return userDao.getByUsername(username);
+            User user = userDao.getByUsername(username);
+            if (user == null) {
+                throw new UsernameNotFoundException("User not found");
+            }
+            return user;
         }
     }
 

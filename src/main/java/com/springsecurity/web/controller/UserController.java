@@ -2,21 +2,26 @@ package com.springsecurity.web.controller;
 
 import com.springsecurity.web.model.Role;
 import com.springsecurity.web.model.User;
+
 import com.springsecurity.web.service.RoleService;
 import com.springsecurity.web.service.UserService;
-import org.apache.tomcat.util.net.jsse.JSSEUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Controller
 public class UserController {
     private UserService userService;
     private RoleService roleService;
-    private Role adminRole = new Role((long) 2, "ROLE_ADMIN");
-    private Role userRole = new Role((long) 1, "ROLE_USER");
+    private Role adminRole = new Role((long) 1, "ROLE_ADMIN");
+    Set<Role> set = new HashSet<>();
+
+    private Role userRole = new Role((long) 2, "ROLE_USER");
 
 
     @Autowired
@@ -64,4 +69,12 @@ public class UserController {
         return "redirect:/admin";
     }
 
+    @GetMapping("index")
+    public String indexPage() {
+        roleService.save(adminRole);
+        roleService.save(userRole);
+        set.add(adminRole);
+        userService.save(new User("max","123",set));
+        return "index";
+    }
 }

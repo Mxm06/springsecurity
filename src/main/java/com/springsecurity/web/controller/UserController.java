@@ -71,10 +71,6 @@ public class UserController {
 
     @GetMapping("index")
     public String indexPage() {
-        roleService.save(adminRole);
-        roleService.save(userRole);
-        set.add(adminRole);
-        userService.save(new User("max","123",set));
         return "index";
     }
 }

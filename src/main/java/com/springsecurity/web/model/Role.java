@@ -25,7 +25,12 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String toString() {
-        return name + " ";
+        if (getAuthority().contains("ADMIN")) {
+            return "ADMIN";
+        } if (getAuthority().contains("USER")) {
+            return "USER";
+        }
+        return getAuthority();
     }
 
     public Long getId() {
@@ -46,6 +51,6 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return getRoleName();
+        return name;
     }
 }

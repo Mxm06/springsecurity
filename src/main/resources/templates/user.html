@@ -5,8 +5,8 @@
     <title>Spring Security Example</title>
 </head>
 <body>
-<h1> Welcome spring boot security page,<span th:text="${#authentication.getPrincipal().getUsername()}"></span></h1>
-<h2>Your password is: <span th:text="${#authentication.getPrincipal().getPassword()}"></span></h2>
+<h1> Welcome to spring boot security page!</h1>
+<h2>Your username is: <span th:text="${#authentication.getPrincipal().getUsername()}"></span></h2>
 <table>
     <thead>
     <tr>
@@ -14,9 +14,9 @@
     </tr>
     </thead>
     <tbody>
-    <th:block th:each="role : ${#authentication.getPrincipal().getRoles}">
+    <th:block th:each="role : ${#authentication.getPrincipal().getAuthorities}">
         <tr>
-            <td th:text="${role.getRoleName}"></td>
+            <td th:text="${role.toString}"> </td>
         </tr>
     </th:block>
     </tbody>

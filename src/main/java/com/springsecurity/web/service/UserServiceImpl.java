@@ -40,6 +40,7 @@ import java.util.List;
         @Transactional
         public void update(User user) {
             user.setPassword(encoder.encode(user.getPassword()));
+
             userDao.update(user);
         }
         @Override

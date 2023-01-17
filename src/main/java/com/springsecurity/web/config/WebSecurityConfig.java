@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
@@ -24,8 +23,9 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class WebSecurityConfig {
     private final SuccessUserHandler successUserHandler;
-    @Autowired
+
     private UserService userService;
+
 
     public WebSecurityConfig(SuccessUserHandler successUserHandler) {
         this.successUserHandler = successUserHandler;
@@ -36,7 +36,7 @@ public class WebSecurityConfig {
         http.authorizeRequests()
                 .requestMatchers("/").permitAll()
                 .requestMatchers("/index").permitAll()
-                .requestMatchers("/user").hasAnyRole("ADMIN","USER")
+                .requestMatchers("/user").hasAnyRole("ADMIN", "USER")
                 .requestMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
@@ -51,20 +51,25 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    PasswordEncoder encoder() {
+    PasswordEncoder getEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
+    DaoAuthenticationProvider getAuthenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
         auth.setUserDetailsService((UserDetailsService) userService);
-        auth.setPasswordEncoder(encoder());
+        auth.setPasswordEncoder(getEncoder());
         return auth;
     }
 
     @Bean
-    UserDetailsManager users(DataSource dataSource) {
+    UserDetailsManager getUserDetailsManager(DataSource dataSource) {
         return new JdbcUserDetailsManager(dataSource);
+    }
+
+    @Autowired
+    void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }

@@ -6,31 +6,24 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 
+import java.util.Objects;
+
 
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
     @Id
-    @Column(name = "id")
     private Long id;
-    @Column(name ="name")
+    @Column(name = "name")
     private String name;
+
     public Role() {
 
     }
+
     public Role(Long id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        if (getAuthority().contains("ADMIN")) {
-            return "ADMIN";
-        } if (getAuthority().contains("USER")) {
-            return "USER";
-        }
-        return getAuthority();
     }
 
     public Long getId() {
@@ -41,16 +34,39 @@ public class Role implements GrantedAuthority {
         this.id = id;
     }
 
-    public String getRoleName() {
+    public String getName() {
         return name;
     }
 
-    public void setRoleName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
     @Override
     public String getAuthority() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        if (getAuthority().contains("ADMIN")) {
+            return "ADMIN";
+        }
+        if (getAuthority().contains("USER")) {
+            return "USER";
+        }
+        return getAuthority();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Role role)) return false;
+        return getId().equals(role.getId()) && getName().equals(role.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName());
     }
 }

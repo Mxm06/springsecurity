@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository;
 
 
 import java.util.List;
+
 @Repository
 public class RoleDaoImpl implements RoleDao {
     @PersistenceContext
-    EntityManager entityManager;
-
+    private EntityManager entityManager;
 
     @Override
     public void save(Role role) {

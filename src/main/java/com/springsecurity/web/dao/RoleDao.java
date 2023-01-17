@@ -7,9 +7,9 @@ import com.springsecurity.web.model.Role;
 import java.util.List;
 
 public interface RoleDao {
-    public void save(Role role);
-    public void delete(Role role);
-    public void update(Role role);
-    public List<Role> listAllRoles();
+     void save(Role role);
+     void delete(Role role);
+     void update(Role role);
+     List<Role> listAllRoles();
 }
 

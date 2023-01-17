@@ -1,21 +1,15 @@
 package com.springsecurity.web.service;
 
 
-
-
-
-
-
-
-
-
 import com.springsecurity.web.model.User;
-
 import java.util.List;
 
 public interface UserService {
-    public void save(User user);
-    public void delete(User user);
-    public void update(User user);
-    public List<User> listAllUsers();
+    void save(User user,String role);
+
+    void delete(User user);
+
+    void update(User user, String role);
+
+    List<User> listAllUsers();
 }

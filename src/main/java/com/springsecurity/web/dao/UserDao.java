@@ -7,9 +7,9 @@ import com.springsecurity.web.model.User;
 import java.util.List;
 
 public interface UserDao {
-    public void save(User user);
-    public void delete(User user);
-    public void update(User user);
-    public List<User> listAllUsers();
-    public User getByUsername(String username);
+     void save(User user);
+     void delete(User user);
+     void update(User user);
+     List<User> listAllUsers();
+     User getByUsername(String username);
 }

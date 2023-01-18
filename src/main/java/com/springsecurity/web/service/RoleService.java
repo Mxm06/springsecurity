@@ -6,10 +6,6 @@ import java.util.List;
 
 public interface RoleService {
     void save(Role role);
-
     void delete(Role role);
-
-    void update(Role role);
-
     List<Role> listAllRoles();
 }

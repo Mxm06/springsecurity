@@ -1,6 +1,6 @@
 package com.springsecurity.web.dao;
 
-import com.springsecurity.web.dao.RoleDao;
+
 import com.springsecurity.web.model.Role;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -16,17 +16,12 @@ public class RoleDaoImpl implements RoleDao {
 
     @Override
     public void save(Role role) {
-        entityManager.merge(role);
+        entityManager.persist(role);
     }
 
     @Override
     public void delete(Role role) {
         entityManager.remove(role);
-    }
-
-    @Override
-    public void update(Role role) {
-        entityManager.merge(role);
     }
 
     @Override

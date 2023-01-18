@@ -4,7 +4,6 @@ package com.springsecurity.web.controller;
 import com.springsecurity.web.model.User;
 
 import com.springsecurity.web.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
     private UserService userService;
 
-    AdminController(UserService userService) {
+    public AdminController(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping("admin")
-    String userPage(Model model) {
+    String getAdminPage(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("patchingUser", new User());
         model.addAttribute("deletingUser", new User());
@@ -34,13 +33,13 @@ public class AdminController {
     }
 
     @PatchMapping("admin")
-    String patch(@ModelAttribute("patchingUser") User user, @RequestParam(value = "role") String role) {
+    String patchUser(@ModelAttribute("patchingUser") User user, @RequestParam(value = "role") String role) {
         userService.update(user, role);
         return "redirect:/admin";
     }
 
     @DeleteMapping("admin")
-    String delete(@ModelAttribute("deletingUser") User user) {
+    String deleteUser(@ModelAttribute("deletingUser") User user) {
         userService.delete(user);
         return "redirect:/admin";
     }

@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class RoleServiceImpl implements RoleService{
+public class RoleServiceImpl implements RoleService {
 
     private RoleDao roleDao;
 
@@ -28,12 +28,6 @@ public class RoleServiceImpl implements RoleService{
     @Transactional
     public void delete(Role role) {
         roleDao.delete(role);
-    }
-
-    @Override
-    @Transactional
-    public void update(Role role) {
-        roleDao.update(role);
     }
 
     @Override

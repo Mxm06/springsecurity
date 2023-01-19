@@ -2,8 +2,10 @@ package com.springsecurity.web.model;
 
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.hibernate.annotations.CascadeType;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -36,13 +38,12 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public void setUsername(String username) {

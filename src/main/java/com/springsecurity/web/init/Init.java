@@ -18,14 +18,18 @@ public class Init {
     }
 
     @PostConstruct
-    private void postConstruct() {
+    public void postConstruct() {
+        Role adminRole = new Role("ROLE_ADMIN");
+        Role userRole = new Role("ROLE_USER");
         User userWithAdminRole = new User("admin", "123");
         User userWithDefaultRole = new User("user", "1234");
         User userWithBothRoles = new User("userAdmin", "12345");
-        roleService.save(new Role((long) 1, "ROLE_ADMIN"));
-        roleService.save(new Role((long) 2, "ROLE_USER"));
-        userService.save(userWithAdminRole, "ADMIN");
-        userService.save(userWithDefaultRole, "USER");
-        userService.save(userWithBothRoles, "ADMIN USER");
+        roleService.save(adminRole);
+        roleService.save(userRole);
+        userWithAdminRole.addRoles(adminRole);
+        userWithAdminRole.addRoles(userRole);
+        userWithDefaultRole.addRoles(userRole);
+        userService.save(userWithAdminRole);
+        userService.save(userWithDefaultRole);
     }
 }

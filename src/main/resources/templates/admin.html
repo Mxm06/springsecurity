@@ -4,69 +4,69 @@
 <html>
 <body>
 <div>
-  <table border="1" width="20%">
-    <thead>
-    <tr>
-      <th>Id</th>
-      <th>Username</th>
-      <th>Password</th>
-      <th>Roles</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user : ${userList}"
-        th:style="'font-weight:bold;'">
-      <td th:text="${user.getId}"></td>
-      <td th:text="${user.getUsername}"> </td>
-      <td th:text="${user.getPassword()}"></td>
-      <td th:text="${user.getRoles().toString}"></td>
-    </tr>
-    </tbody>
-  </table>
-  <br/>
-  Create user:
-  <form th:method="POST" th:action="@{/admin}" th:object="${user}">
-    <label for="name">Enter username:</label>
-    <input type="text" th:field="*{username}" id="name"/>
+    <table border="1" width="20%">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Roles</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${userList}"
+            th:style="'font-weight:bold;'">
+            <td th:text="${user.getId}"></td>
+            <td th:text="${user.getUsername}"></td>
+            <td th:text="${user.getPassword()}"></td>
+            <td th:text="${user.getRoles().toString}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    Create user:
+    <form th:method="POST" th:action="@{/admin}" th:object="${user}">
+        <label for="name">Enter username:</label>
+        <input type="text" th:field="*{username}" id="name"/>
 
-    <label for="password">Enter password:</label>
-    <input type="text" th:field="*{password}" id="password"/>
+        <label for="password">Enter password:</label>
+        <input type="text" th:field="*{password}" id="password"/>
+        <br/>
+        <select multiple required th:name="role">
+            <option disabled>CHOOSE ROLES</option>
+            <option value="ROLE_USER">USER</option>
+            <option value="ROLE_ADMIN">ADMIN</option>
+        </select>
+        <input type="submit" value="Create"/>
+    </form>
     <br/>
-    <select multiple required th:name="role">
-      <option disabled>CHOOSE ROLES</option>
-      <option value="USER">USER</option>
-      <option value="ADMIN">ADMIN</option>
-    </select>
-    <input type="submit" value="Create"/>
-  </form>
-  <br/>
-  Update user:
-  <form th:method="PATCH" th:action="@{/admin}" th:object="${patchingUser}">
-  <label for="patchingId">Enter id:    </label>
-  <input type="text" th:field="*{id}" id="patchingId"/>
+    Update user:
+    <form th:method="PATCH" th:action="@{/admin}" th:object="${patchingUser}">
+        <label for="patchingId">Enter id: </label>
+        <input type="text" th:field="*{id}" id="patchingId"/>
+        <br/>
+        <label for="patchingName">Enter username:</label>
+        <input type="text" th:field="*{username}" id="patchingName"/>
+        <br/>
+        <label for="patchingEmail">Enter password:</label>
+        <input type="text" th:field="*{password}" id="patchingEmail"/>
+        <input type="submit" value="Update user"/>
+        <select multiple required th:name="role">
+            <option disabled>CHOOSE ROLES</option>
+            <option value="ROLE_USER">USER</option>
+            <option value="ROLE_ADMIN">ADMIN</option>
+        </select>
+    </form>
     <br/>
-    <label for="patchingName">Enter username:</label>
-  <input type="text" th:field="*{username}" id="patchingName"/>
-    <br/>
-    <label for="patchingEmail">Enter password:</label>
-    <input type="text" th:field="*{password}" id="patchingEmail"/>
-    <input type="submit" value="Update user"/>
-    <select multiple required th:name="role">
-      <option disabled>CHOOSE ROLES</option>
-      <option value="USER">USER</option>
-      <option value="ADMIN">ADMIN</option>
-    </select>
-  </form>
-  <br/>
-  Delete user by id:
-  <form th:method="DELETE" th:action="@{/admin}" th:object="${deletingUser}">
-    <label for="id">Enter id:</label>
-    <input type="text" th:field="*{id}" id="id"/>
-    <input type="submit" value="Delete"/>
-  </form>
+    Delete user by id:
+    <form th:method="DELETE" th:action="@{/admin}" th:object="${deletingUser}">
+        <label for="id">Enter id:</label>
+        <input type="text" th:field="*{id}" id="id"/>
+        <input type="submit" value="Delete"/>
+    </form>
 </div>
 <form th:action="@{/logout}" method="POST">
-  <input type="submit" value="Logout"/>
+    <input type="submit" value="Logout"/>
 </form>
 </body>
 </html>

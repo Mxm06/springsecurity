@@ -6,11 +6,13 @@ import com.springsecurity.web.model.User;
 import java.util.List;
 
 public interface UserService {
-    void save(User user, String role);
+    void save(User user);
 
     void delete(User user);
 
-    void update(User user, String role);
+    void deleteById(Long id);
 
-    List<User> listAllUsers();
+    void update(User user);
+
+    List<User> getUsersList();
 }

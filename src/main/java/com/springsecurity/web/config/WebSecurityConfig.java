@@ -51,7 +51,7 @@ public class WebSecurityConfig {
 
 
     @Bean
-    DaoAuthenticationProvider getAuthenticationProvider() {
+    public DaoAuthenticationProvider getAuthenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
         auth.setUserDetailsService((UserDetailsService) userService);
         auth.setPasswordEncoder(encoder);
@@ -59,7 +59,7 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    UserDetailsManager getUserDetailsManager(DataSource dataSource) {
+    public UserDetailsManager getUserDetailsManager(DataSource dataSource) {
         return new JdbcUserDetailsManager(dataSource);
     }
 

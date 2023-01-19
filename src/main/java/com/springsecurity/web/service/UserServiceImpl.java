@@ -1,9 +1,7 @@
 package com.springsecurity.web.service;
 
 import com.springsecurity.web.dao.UserDao;
-import com.springsecurity.web.model.Role;
 import com.springsecurity.web.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,8 +14,6 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
-    private Role adminRole = new Role((long) 1, "ROLE_ADMIN");
-    private Role userRole = new Role((long) 2, "ROLE_USER");
     private UserDao userDao;
     private PasswordEncoder encoder;
 
@@ -28,14 +24,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional
-    public void save(User user, String role) {
+    public void save(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
-        if (role.contains("ADMIN")) {
-            user.addRoles(adminRole);
-        }
-        if (role.contains("USER")) {
-            user.addRoles(userRole);
-        }
         userDao.save(user);
     }
 
@@ -47,20 +37,20 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional
-    public void update(User user, String role) {
+    public void deleteById(Long id) {
+        userDao.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void update(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
-        if (role.contains("ADMIN")) {
-            user.addRoles(adminRole);
-        }
-        if (role.contains("USER")) {
-            user.addRoles(userRole);
-        }
         userDao.update(user);
     }
 
     @Override
-    public List<User> listAllUsers() {
-        return userDao.listAllUsers();
+    public List<User> getUsersList() {
+        return userDao.getUsersList();
     }
 
     @Override

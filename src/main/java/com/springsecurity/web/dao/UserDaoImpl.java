@@ -10,8 +10,6 @@ import java.util.List;
 
 @Repository
 public class UserDaoImpl implements UserDao {
-
-    final private String FROM_USER = "From User";
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -20,7 +18,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     public void delete(User user) {
-        entityManager.createQuery("delete from User where id =: id").setParameter("id", user.getId()).executeUpdate();
+        entityManager.remove(user);
+    }
+
+    public void deleteById(Long id) {
+        entityManager.createQuery("delete from User where id =: id").setParameter("id", id).executeUpdate();
     }
 
     public User getByUsername(String username) {
@@ -32,7 +34,7 @@ public class UserDaoImpl implements UserDao {
         entityManager.merge(user);
     }
 
-    public List<User> listAllUsers() {
-        return entityManager.createQuery(FROM_USER).getResultList();
+    public List<User> getUsersList() {
+        return entityManager.createQuery("from User").getResultList();
     }
 }

@@ -31,13 +31,13 @@ public class AdminController {
 
     @PostMapping("admin")
     private String createUser(@ModelAttribute("user") User user, @RequestParam(value = "role") String role) {
-        userService.addRoleAndSave(user,role);
+        userService.addRoleAndSave(user, role);
         return "redirect:/admin";
     }
 
     @PatchMapping("admin")
     private String patchUser(@ModelAttribute("patchingUser") User user, @RequestParam(value = "role") String role) {
-        userService.addRoleAndUpdate(user,role);
+        userService.addRoleAndUpdate(user, role);
         return "redirect:/admin";
     }
 

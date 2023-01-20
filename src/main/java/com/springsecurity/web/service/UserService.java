@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface UserService {
     void save(User user);
+
     void addRoleAndSave(User user, String role);
 
     void delete(User user);
@@ -14,6 +15,7 @@ public interface UserService {
     void deleteById(Long id);
 
     void update(User user);
+
     void addRoleAndUpdate(User user, String role);
 
 

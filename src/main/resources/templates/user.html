@@ -16,7 +16,7 @@
     <tbody>
     <th:block th:each="role : ${#authentication.getPrincipal().getAuthorities}">
         <tr>
-            <td th:text="${role.toString}"> </td>
+            <td th:text="${role.toString}"></td>
         </tr>
     </th:block>
     </tbody>

@@ -17,7 +17,6 @@
                     <span class="font-weight-normal"> with roles:</span>
                     <span th:text="${#authentication.getPrincipal().getAuthorities().toString()}"></span>
                 </h4>
-
             </h>
 
 
@@ -74,22 +73,22 @@
                     <tbody>
                     <tr>
                         <td>
-                            3
+                            <span th:text="${#authentication.getPrincipal().getId()}"></span>
                         </td>
                         <td>
-                            user
+                            <span th:text="${#authentication.getPrincipal().getFirstName()}"></span>
                         </td>
                         <td>
-                            user
+                            <span th:text="${#authentication.getPrincipal().getLastName()}"></span>
                         </td>
                         <td>
-                            30
+                            <span th:text="${#authentication.getPrincipal().getAge()}"></span>
                         </td>
                         <td>
-                            user@mail.ru
+                            <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
                         </td>
                         <td>
-                            USER
+                            <span th:text="${#authentication.getPrincipal().rolesToString()}"></span>
                         </td>
                     </tr>
 

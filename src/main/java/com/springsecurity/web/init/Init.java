@@ -22,8 +22,13 @@ public class Init {
         Role adminRole = new Role("ROLE_ADMIN");
         Role userRole = new Role("ROLE_USER");
         User userWithAdminRole = new User("admin", "123");
+        userWithAdminRole.setAge((byte) 30);
+        userWithAdminRole.setFirstName("Alex");
+        userWithAdminRole.setLastName("Wilson");
         User userWithDefaultRole = new User("user", "1234");
-        User userWithBothRoles = new User("userAdmin", "12345");
+        userWithDefaultRole.setAge((byte) 20);
+        userWithDefaultRole.setFirstName("Billy");
+        userWithDefaultRole.setLastName("Davidson");
         roleService.save(adminRole);
         roleService.save(userRole);
         userWithAdminRole.addRoles(adminRole);

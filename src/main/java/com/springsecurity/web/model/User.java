@@ -2,6 +2,7 @@ package com.springsecurity.web.model;
 
 
 import jakarta.persistence.*;
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Cascade;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,10 +19,17 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "username", unique = true)
+    @Column(name = "email", unique = true)
     private String username;
     @Column(name = "password")
     private String password;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
+    @Column(name = "age")
+    private Byte age;
+
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Role> roles = new HashSet<>();
 
@@ -46,6 +54,11 @@ public class User implements UserDetails {
         return id;
     }
 
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -57,23 +70,38 @@ public class User implements UserDetails {
     public void addRoles(Role role) {
         roles.add(role);
     }
-    public void addRolesWithString(String roleName) {
-
-    }
 
     public String getPassword() {
         return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Byte getAge() {
+        return age;
+    }
+
+    public void setAge(Byte age) {
+        this.age = age;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -108,6 +136,10 @@ public class User implements UserDetails {
                 ", password='" + password + '\'' +
                 ", roles=" + roles +
                 '}';
+    }
+
+    public String rolesToString() {
+        return StringUtils.join(roles, " ");
     }
 
     @Override

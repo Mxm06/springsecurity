@@ -153,11 +153,14 @@
                                                                        id="patchingPassword" required/>
                                                                 <br/>
                                                                 <h5 class="text-center">Role</h5>
-                                                                <select class="form-control" size="2" th:name="role"
-                                                                        multiple
+                                                                <select class="form-control input-sm" size="2"
+                                                                        th:field="*{roles}"
+                                                                        th:multiple="true"
+                                                                        th:valuetype="com.springsecurity.web.model.Role"
                                                                         required>
-                                                                    <option value="ROLE_USER">USER</option>
-                                                                    <option value="ROLE_ADMIN">ADMIN</option>
+                                                                    <option th:each="role : ${rolesList}"
+                                                                            th:value="${role.name}"
+                                                                            th:text="${role.getRedactedNames()}"></option>
                                                                 </select>
                                                         </div>
                                                         <div class="col-md-3">
@@ -294,10 +297,11 @@
                                                th:field="*{password}"
                                                required/>
                                         <h5 class="text-center" style="margin-top: 15px">Role</h5>
-                                        <select class="form-control input-sm" size="2" th:name="role" multiple
+                                        <select class="form-control input-sm" size="2" th:field="*{roles}"
+                                                th:multiple="true" th:valuetype="com.springsecurity.web.model.Role"
                                                 required>
-                                            <option value="ROLE_USER">USER</option>
-                                            <option value="ROLE_ADMIN">ADMIN</option>
+                                            <option th:each="role : ${rolesList}" th:value="${role.name}"
+                                                    th:text="${role.getRedactedNames()}"></option>
                                         </select>
                                         <button type="submit" class="btn btn-success btn-lg" value="Submit"
                                                 style="margin: 10px">Add new user

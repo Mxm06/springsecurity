@@ -49,7 +49,6 @@ public class WebSecurityConfig {
         return http.build();
     }
 
-
     @Bean
     public DaoAuthenticationProvider getAuthenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
@@ -62,5 +61,6 @@ public class WebSecurityConfig {
     public UserDetailsManager getUserDetailsManager(DataSource dataSource) {
         return new JdbcUserDetailsManager(dataSource);
     }
+
 
 }

@@ -26,18 +26,19 @@ public class AdminController {
         model.addAttribute("patchingUser", new User());
         model.addAttribute("deletingUser", new User());
         model.addAttribute("userList", userService.getUsersList());
+        model.addAttribute("rolesList", roleService.getRolesList());
         return "admin";
     }
 
     @PostMapping("admin")
-    private String createUser(@ModelAttribute("user") User user, @RequestParam(value = "role") String role) {
-        userService.addRoleAndSave(user, role);
+    private String createUser(@ModelAttribute("user") User user) {
+        userService.save(user);
         return "redirect:/admin";
     }
 
     @PatchMapping("admin")
-    private String patchUser(@ModelAttribute("patchingUser") User user, @RequestParam(value = "role") String role) {
-        userService.addRoleAndUpdate(user, role);
+    private String patchUser(@ModelAttribute("patchingUser") User user) {
+        userService.update(user);
         return "redirect:/admin";
     }
 

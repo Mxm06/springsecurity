@@ -1,7 +1,6 @@
 package com.springsecurity.web.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.HashSet;
@@ -59,6 +58,16 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String toString() {
+        if (getAuthority().contains("ADMIN")) {
+            return "ADMIN";
+        }
+        if (getAuthority().contains("USER")) {
+            return "USER";
+        }
+        return getAuthority();
+    }
+
+    public String getRedactedNames() {
         if (getAuthority().contains("ADMIN")) {
             return "ADMIN";
         }

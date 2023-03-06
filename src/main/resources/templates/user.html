@@ -15,7 +15,7 @@
                 <h4>
                     <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
                     <span class="font-weight-normal"> with roles:</span>
-                    <span th:text="${#authentication.getPrincipal().getAuthorities().toString()}"></span>
+                    <span th:text="${#authentication.getPrincipal().rolesToString()}"></span>
                 </h4>
             </h>
 
@@ -46,8 +46,8 @@
                 </h3>
                 <table class="table table-striped bg-white border">
                     <caption class="text-body border-top rounded-top border-left border-right bg-light"
-                             style="caption-side: top;" >
-                 <h5 style="position: relative; left: 10px; top: 2px; font-size: 23px">About user</h5>
+                             style="caption-side: top;">
+                        <h5 style="position: relative; left: 10px; top: 2px; font-size: 23px">About user</h5>
                     </caption>
                     <thead>
                     <tr>

@@ -3,10 +3,8 @@ package com.springsecurity.web.model;
 
 import jakarta.persistence.*;
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.annotations.Cascade;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.hibernate.annotations.CascadeType;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -29,7 +27,6 @@ public class User implements UserDetails {
     private String lastName;
     @Column(name = "age")
     private Byte age;
-
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Role> roles = new HashSet<>();
 
@@ -65,6 +62,10 @@ public class User implements UserDetails {
 
     public Set<Role> getRoles() {
         return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public void addRoles(Role role) {

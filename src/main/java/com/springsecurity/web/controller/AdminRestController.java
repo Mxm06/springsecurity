@@ -10,19 +10,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class UserRestController {
-    @Autowired
+public class AdminRestController {
     private UserService userService;
 
+    public AdminRestController(UserService userService) {
+        this.userService = userService;
+    }
+
     @GetMapping("/users")
-    ResponseEntity<List<User>> getAllUsersList() {
+    public ResponseEntity<List<User>> getAllUsersList() {
         List<User> allUsers = userService.getUsersList();
         return ResponseEntity.ok(allUsers);
     }
 
 
     @GetMapping("/users/{id}")
-    ResponseEntity<User> getUserById(@PathVariable Long id) {
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 

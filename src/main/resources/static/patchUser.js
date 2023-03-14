@@ -37,6 +37,6 @@ function patchUser() {
         }),
         headers: {"Content-type": "application/json; charset=UTF-8"}
     })
-        .then(response => response.status == 200 ? (alert("User updated successfully"), showAllUsers()) : alert("Error while updating user"));
+        .then(response => response.status == 200 ? showAllUsers() : alert("Error while updating user"));
 }
 

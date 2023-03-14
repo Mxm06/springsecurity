@@ -6,7 +6,6 @@ function userInfo(user) {
         .then(user => {
             let tBody = document.getElementById("user_info");
             tBody.innerHTML = "";
-
             var row = tBody.insertRow(0);
             var idCell = row.insertCell(0);
             idCell.innerHTML = user.id;
@@ -25,5 +24,4 @@ function userInfo(user) {
             })
             rolesCell.innerHTML = rolesString;
         });
-
 }

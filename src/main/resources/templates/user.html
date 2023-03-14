@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin panel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+          integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+</head>
+<body>
+
+<div id="header" class="d-flex bg-dark p-0">
+    <div id="headerUsername" class="p-2 text-white font-weight-bold"></div>
+    <div id="headerRoles" class="p-2 w-100 text-white"></div>
+    <a class="p-2 text-secondary text-right text-decoration-none" href="/logout"> Logout </a>
+</div>
+<div class="row mr-0">
+    <!--    ширина 2 отступ сверху 3-->
+    <div class="col-2 mt-3 p-0">
+        <div id="tablist" class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+            <a href="/admin">
+                <button type="button" class="btn btn-block text-primary" id="adminButton">
+                    Admin
+                </button>
+            </a>
+            <a href="/user">
+                <button type="button" class="btn btn-block text-white btn-primary">
+                    User
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="col-10 pl-0 pr-0">
+        <div class="tab-content bg-light p-2">
+            <div class="tab-pane fade show active ml-3 mr-3" style="height: 700px;" id="admin_panel" role="tabpanel"
+                 aria-labelledby="admin_panel">
+                <h1>User information-page</h1>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active border" id="user_panel" role="tabpanel">
+                        <div class="ml-3 pt-1 d-flex border-bottom"><h4>About user</h4></div>
+                        <div class="bg-white p-3">
+                            <table class="table table-striped  border-top">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Age</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                </tr>
+                                </thead>
+                                <tbody id="user_info"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>headerInfo()</script>
+<script>userInfo()</script>
+<script>adminButtonRoleCheck()</script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+
+<script src="/adminButtonRoleCheck.js"></script>
+<script src="/headerInfo.js"></script>
+<script src="/userInfo.js"></script>
+</body>
+</html>

@@ -32,7 +32,13 @@ function postUser() {
         }),
         headers: {"Content-type": "application/json; charset=UTF-8"}
     })
-        .then(response => response.status == 200 ? (alert("New user added"), showAllUsers()) : alert("Error while creating user"))
+        .then(response => {
+            if (response.status == 200) {
+                showAllUsers();
+            } else {
+                alert("Error while creating user");
+            }
+        })
 
     window.formNewUser.newName.value = "";
     window.formNewUser.newLastName.value = "";
@@ -40,5 +46,5 @@ function postUser() {
     window.formNewUser.newEmail.value = "";
     window.formNewUser.newPassword.value = "";
     window.formNewUser.newRoles.value = "";
-
+    document.getElementById("navTabTable").click();
 }

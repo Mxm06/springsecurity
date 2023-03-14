@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
-public class UserController {
-    @GetMapping("/user")
-    private String getUserPage() {
-        return "user";
+public class RegularController {
+    @GetMapping("/admin")
+    private String getAdminPage() {
+        return "admin";
     }
 }

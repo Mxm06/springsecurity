@@ -1,11 +1,11 @@
 package com.springsecurity.web.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 
 @Entity
@@ -16,8 +16,6 @@ public class Role implements GrantedAuthority {
     private Long id;
     @Column(name = "name")
     private String name;
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users = new HashSet<>();
 
     public Role() {
 
@@ -25,6 +23,12 @@ public class Role implements GrantedAuthority {
 
     public Role(String name) {
         this.name = name;
+    }
+
+    @JsonCreator
+    public Role(Long id, String name) {
+        this(name);
+        this.id = id;
     }
 
     public void setId(Long id) {
@@ -43,15 +47,8 @@ public class Role implements GrantedAuthority {
         this.name = name;
     }
 
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-
     @Override
+    @JsonIgnore
     public String getAuthority() {
         return name;
     }

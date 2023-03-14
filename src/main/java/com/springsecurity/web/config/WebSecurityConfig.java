@@ -38,7 +38,7 @@ public class WebSecurityConfig {
                 .requestMatchers("/user").hasAnyRole("ADMIN", "USER")
                 .requestMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
-                .and()
+                .and().csrf().disable()
                 .formLogin().successHandler(successUserHandler)
                 .permitAll()
                 .and()

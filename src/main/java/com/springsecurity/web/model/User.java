@@ -1,6 +1,7 @@
 package com.springsecurity.web.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.GrantedAuthority;
@@ -71,6 +72,7 @@ public class User implements UserDetails {
     public void addRoles(Role role) {
         roles.add(role);
     }
+
 
     public String getPassword() {
         return password;
